@@ -4,22 +4,12 @@ A Discord bot to save links with tags
 
 ## Save a link
 
-`$ls save https://example.com some,tags,here`
+`$ls save https://example.com some,tags,here`  
 
-<p align="center">
-	<img
-		width="100"
-		alt="Logo"
-		src="/art/save.png">
-</p>
+![](/art/save.png)
 
 ## Search
 
-`$ls search <term>`
+`$ls search <term>`  
 
-<p align="center">
-	<img
-		width="100"
-		alt="Logo"
-		src="/art/search.png">
-</p>
+![](/art/search.png)
