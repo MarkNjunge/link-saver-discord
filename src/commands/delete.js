@@ -32,7 +32,8 @@ module.exports = {
       message.react("✅");
     } catch (e) {
       message.react("❗");
-      winston.error(`${e} | ${e.response.data.message}`);
+      const msg = e.response ? e.response.data.message : e;
+      winston.error(msg);
     }
   }
 };

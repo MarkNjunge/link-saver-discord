@@ -36,7 +36,9 @@ module.exports = {
 
       message.react("✅");
     } catch (e) {
-      winston.error(`${e} | ${e.response.data.message}`);
+      message.react("❗");
+      const msg = e.response ? e.response.data.message : e;
+      winston.error(msg);
     }
   }
 };
