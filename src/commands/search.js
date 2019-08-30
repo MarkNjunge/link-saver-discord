@@ -51,10 +51,13 @@ module.exports = {
         const embed = new Discord.RichEmbed()
           .setTitle(link.title)
           .setURL(link.url)
-          .setDescription(link.description)
           .setThumbnail(link.image)
           .addField("Tags", link.tags)
           .setTimestamp(link.dateTimeAdded);
+
+        if (link.description) {
+          embed.setDescription(link.description);
+        }
 
         message.channel.send(embed);
       });
