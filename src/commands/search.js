@@ -52,9 +52,11 @@ module.exports = {
           .setTitle(link.title)
           .setURL(link.url)
           .setThumbnail(link.image)
-          .addField("Tags", link.tags)
           .setTimestamp(link.dateTimeAdded);
 
+        if (link.tags) {
+          embed.addField("Tags", link.tags);
+        }
         if (link.description) {
           embed.setDescription(link.description);
         }

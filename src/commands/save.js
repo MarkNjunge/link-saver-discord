@@ -7,13 +7,13 @@ const { replyWithInsult } = require("../utils");
 module.exports = {
   name: "save",
   description: "Save a link.",
-  usage: "https://example.com enter,tags,here",
+  usage: "https://example.com enter,optional,tags,here",
   execute: async (message, args) => {
-    if (!args[0] || !args[1]) {
+    if (!args[0]) {
       message.react("❌");
       await replyWithInsult(
         message,
-        `Two arguments are required. See \`${botPrefix} help save\``
+        `A link is required. See \`${botPrefix} help save\``
       );
       return;
     } else if (!args[0].startsWith("http")) {
