@@ -24,8 +24,9 @@ function extractSearchArgs(content) {
 
 module.exports = {
   name: "search",
-  description: "Search for a link",
-  usage: "node 5[limit, optional] 1[page, optional]",
+  description:
+    "Searches for links whose url, title or tags match the term. Surround the term with double quotes to support spaces. limit and page are optional.",
+  usage: "_<term>_ _<limit>_ _<page>_",
   guildOnly: true,
   execute: async (message, args) => {
     args = extractSearchArgs(message.content);
