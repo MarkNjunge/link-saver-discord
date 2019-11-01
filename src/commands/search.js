@@ -5,12 +5,31 @@ const winston = require("winston");
 const { apiEndpoint, apiKey, botPrefix } = require("../config");
 const { replyWithInsult } = require("../utils");
 
+function extractSearchArgs(content) {
+  const myRegexp = /[^\s"]+|"([^"]*)"/gi;
+  const myArray = [];
+
+  do {
+    //Each call to exec returns the next regex match as an array
+    var match = myRegexp.exec(content);
+    if (match != null) {
+      //Index 1 in the array is the captured group if it exists
+      //Index 0 is the matched text, which we use if no captured group exists
+      myArray.push(match[1] ? match[1] : match[0]);
+    }
+  } while (match != null);
+
+  return myArray.slice(2);
+}
+
 module.exports = {
   name: "search",
   description: "Search for a link",
   usage: "node 5[limit, optional] 1[page, optional]",
   guildOnly: true,
   execute: async (message, args) => {
+    args = extractSearchArgs(message.content);
+
     if (!args[0]) {
       message.react("❌");
       await replyWithInsult(
