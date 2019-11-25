@@ -9,6 +9,12 @@ module.exports = {
   description: "Save a link.",
   usage: "https://example.com enter,optional,tags,here",
   execute: async (message, args) => {
+    // the args param will have tags incorrectly parsed if the have spaces.
+    const tags = message.content
+      .split(/\$lst save http.*? /gm)
+      .filter(x => x.trim().length > 0)
+      .toString();
+
     if (!args[0]) {
       message.react("❌");
       await replyWithInsult(
@@ -25,7 +31,7 @@ module.exports = {
     try {
       await axios.post(
         `${apiEndpoint}/save`,
-        { url: args[0], tags: args[1] },
+        { url: args[0], tags },
         {
           headers: {
             "content-type": "application/json",
